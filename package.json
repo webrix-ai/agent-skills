@@ -3,24 +3,14 @@
   "version": "1.0.0",
   "description": "A collection of agent skills for AI assistants",
   "type": "module",
-  "main": "./dist/sdk.mjs",
-  "types": "./dist/sdk.d.mts",
+  "main": "./package.json",
   "exports": {
-    ".": {
-      "import": "./dist/sdk.mjs",
-      "types": "./dist/sdk.d.mts"
-    }
+    "./package.json": "./package.json",
+    "./skills/*": "./skills/*"
   },
   "files": [
-    "dist",
     "skills"
   ],
-  "scripts": {
-    "build": "node scripts/generate-skills-registry.mjs",
-    "prepublishOnly": "npm run build",
-    "dev": "node scripts/generate-skills-registry.mjs",
-    "test": "node examples/usage-example.mjs"
-  },
   "keywords": [
     "agent",
     "skills",
@@ -30,19 +20,6 @@
   ],
   "author": "Webrix",
   "license": "MIT",
-  "homepage": "https://github.com/webrix-ai/agent-skills#readme",
-  "bugs": {
-    "url": "https://github.com/webrix-ai/agent-skills/issues"
-  },
-  "dependencies": {
-    "gray-matter": "^4.0.3"
-  },
-  "devDependencies": {
-    "typescript": "^5.9.3"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/webrix-ai/agent-skills.git"

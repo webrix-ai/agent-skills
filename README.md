@@ -1,167 +1,83 @@
-# @webrix/skills
+# Agent Skills
 
 A collection of agent skills for AI assistants.
 
-## Installation
+## Structure
 
-Install directly from the GitHub repository:
-
-```bash
-# Install from main branch
-npm install github:webrix-ai/agent-skills
-
-# Install from a specific branch
-npm install github:webrix-ai/agent-skills#dev
-
-# Install from a specific tag/version
-npm install github:webrix-ai/agent-skills#v1.0.0
-
-# Install from a specific commit
-npm install github:webrix-ai/agent-skills#abc1234
-```
-
-## SDK Usage
-
-Import skills data in your Node.js applications:
-
-```javascript
-import { skills, getSkillByName, getSkillBySlug } from '@webrix/skills';
-
-console.log(`Total skills: ${skills.length}`);
-
-const skill = getSkillByName('find-skills');
-if (skill) {
-  console.log(skill.description);
-  console.log(skill.content);
-}
-
-const allSkillNames = skills.map(s => s.name);
-console.log(allSkillNames);
-```
-
-### TypeScript Support
-
-Full TypeScript definitions are included:
-
-```typescript
-import { SkillEntry, getSkillBySlug } from '@webrix/skills';
-
-const skill: SkillEntry | null = getSkillBySlug('pr-review-standards');
-```
-
-### Available SDK Functions
-
-- `skills` - Array of all available skills
-- `getSkillBySlug(slug: string)` - Find a skill by its slug
-- `getSkillByName(name: string)` - Find a skill by name or slug
-- `getSkillNames()` - Get array of all skill names
-- `getSkillSlugs()` - Get array of all skill slugs
-
-### SkillEntry Interface
-
-```typescript
-interface SkillEntry {
-  readonly slug: string;
-  readonly name: string;
-  readonly tagline: string;
-  readonly description: string;
-  readonly department: readonly string[];
-  readonly useCases: readonly string[];
-  readonly toolsRequired: readonly string[];
-  readonly agentsCompatible: readonly string[];
-  readonly author: string;
-  readonly verified: boolean;
-  readonly updatedAt: string;
-  readonly exampleInput: string;
-  readonly exampleOutput: string;
-  readonly content: string;
-  readonly version: string;
-  readonly signature: string;
-}
-```
-
-## Development
-
-### Build
-
-Generate the SDK from skills:
-
-```bash
-npm run build
-```
-
-This will:
-- Parse all `skills/*/SKILL.md` files
-- Extract frontmatter metadata
-- Generate `dist/sdk.mjs` and `dist/sdk.d.mts`
-
-### Project Structure
+This repository contains only Markdown files with YAML frontmatter. Each skill is defined in a `SKILL.md` file within its own directory under `/skills`.
 
 ```
-agent-skills/
-├── scripts/
-│   └── generate-skills-registry.mjs
-├── skills/
-│   ├── find-skills/
-│   │   └── SKILL.md
-│   ├── pr-review-standards/
-│   │   └── SKILL.md
-│   └── ...
-├── dist/               # Generated SDK (created by build)
-│   ├── sdk.mjs
-│   └── sdk.d.mts
-└── package.json
+skills/
+├── skill-name-1/
+│   └── SKILL.md
+├── skill-name-2/
+│   └── SKILL.md
+└── ...
 ```
 
-## Contributing
+## Skill File Format
 
-1. Add your skill as a directory under `skills/`
-2. Create a `SKILL.md` file with proper frontmatter
-3. Run `npm run build` to regenerate the SDK
-4. Submit a pull request
+Each `SKILL.md` file contains:
 
-### Skill Frontmatter Format
+### Frontmatter (YAML)
 
 ```yaml
 ---
 name: skill-slug
-displayName: Human Readable Name
-tagline: Short one-liner description
+displayName: Skill Display Name
+tagline: Brief description
 description: |
-  Longer multiline description
+  Detailed description
+  Can span multiple lines
 department:
   - Engineering
-  - Security
+  - AI Enablement Leaders
 use_cases:
-  - Testing
-  - Documentation
+  - Use Case 1
+  - Use Case 2
 tools_required:
-  - GitHub API
+  - Tool Name MCP
 agents_compatible:
-  - Claude
+  - Claude / Claude Code
   - Cursor
-author: Your Name
+  - Windsurf
+author: Author Name
 verified: true
-updatedAt: 2026-02-24
+updatedAt: YYYY-MM-DD
 version: 1.0.0
 exampleInput: |
-  Example input
+  Optional example input
 exampleOutput: |
-  Example output
+  Optional example output
 ---
-
-# Skill Content
-
-Your skill documentation here...
 ```
 
-## Related Documentation
+### Body (Markdown)
 
-- [GITHUB_INSTALL.md](./GITHUB_INSTALL.md) - Install directly from GitHub (branches, commits, tags)
-- [QUICKSTART.md](./QUICKSTART.md) - Quick start guide
-- [CONTRIBUTING.md](./CONTRIBUTING.md) - Add your own skills
-- [PUBLISHING.md](./PUBLISHING.md) - Publish to npm
-- [ARCHITECTURE.md](./ARCHITECTURE.md) - Technical architecture
+The body contains the skill documentation, including:
+- Description
+- When to use
+- Steps
+- Examples
+
+## Usage
+
+This package is designed to be imported as a GitHub dependency. The consuming application is responsible for parsing the Markdown files.
+
+```json
+{
+  "dependencies": {
+    "@webrix/skills": "github:webrix-ai/agent-skills#branch-name"
+  }
+}
+```
+
+## Creating New Skills
+
+1. Create a new directory under `/skills` with a kebab-case name
+2. Add a `SKILL.md` file with the required frontmatter and documentation
+3. Ensure all required fields are present
+4. Submit a pull request
 
 ## License
 
