@@ -1,0 +1,9 @@
+node_modules/
+*.log
+.git/
+.gitignore
+.DS_Store
+.env
+.env.local
+scripts/
+agent-transcripts/
