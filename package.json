@@ -5,10 +5,6 @@
   "type": "module",
   "main": "./dist/sdk.mjs",
   "types": "./dist/sdk.d.mts",
-  "bin": {
-    "webrix-skills": "./bin/cli.js",
-    "skills": "./bin/cli.js"
-  },
   "exports": {
     ".": {
       "import": "./dist/sdk.mjs",
@@ -17,22 +13,19 @@
   },
   "files": [
     "dist",
-    "bin",
     "skills"
   ],
   "scripts": {
     "build": "node scripts/generate-skills-registry.mjs",
     "prepublishOnly": "npm run build",
     "dev": "node scripts/generate-skills-registry.mjs",
-    "test": "node examples/usage-example.mjs",
-    "cli": "node bin/cli.js"
+    "test": "node examples/usage-example.mjs"
   },
   "keywords": [
     "agent",
     "skills",
     "ai",
     "assistant",
-    "cli",
     "automation"
   ],
   "author": "Webrix",

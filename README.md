@@ -1,6 +1,6 @@
 # @webrix/skills
 
-A collection of agent skills for AI assistants with CLI and SDK capabilities.
+A collection of agent skills for AI assistants.
 
 ## Installation
 
@@ -18,88 +18,6 @@ npm install github:webrix-ai/agent-skills#v1.0.0
 
 # Install from a specific commit
 npm install github:webrix-ai/agent-skills#abc1234
-```
-
-### CLI Usage (No Installation Required)
-
-Run commands directly from GitHub:
-
-```bash
-# From main branch
-npx github:webrix-ai/agent-skills add webrix/pr-review-standards
-npx github:webrix-ai/agent-skills help
-npx github:webrix-ai/agent-skills list
-
-# From specific branch (e.g., dev branch)
-npx github:webrix-ai/agent-skills#dev add webrix/pr-review-standards
-npx github:webrix-ai/agent-skills#dev help
-
-# From specific tag or commit
-npx github:webrix-ai/agent-skills#v1.0.0 add webrix/pr-review-standards
-npx github:webrix-ai/agent-skills#abc123def help
-```
-
-### Install Globally for Shorter Commands
-
-```bash
-# Install once
-npm install -g github:webrix-ai/agent-skills
-
-# Then use short commands anywhere
-skills add webrix/pr-review-standards
-skills help
-skills list
-```
-
-## CLI Usage
-
-### Add a skill
-
-Install a specific skill from a GitHub repository:
-
-```bash
-npx github:webrix-ai/agent-skills add owner/repo@skill-name
-```
-
-Install all skills from a repository:
-
-```bash
-npx github:webrix-ai/agent-skills add owner/repo
-```
-
-Examples:
-
-```bash
-# From main branch
-npx github:webrix-ai/agent-skills add webrix/pr-review-standards
-npx github:webrix-ai/agent-skills add webrix/agent-skills@find-skills
-
-# From specific branch
-npx github:webrix-ai/agent-skills#dev add webrix/pr-review-standards
-npx github:webrix-ai/agent-skills#feature/new-skills list
-
-# From specific tag
-npx github:webrix-ai/agent-skills#v1.0.0 add webrix/agent-skills@find-skills
-```
-
-### List installed skills
-
-```bash
-npx github:webrix-ai/agent-skills list
-```
-
-### Remove a skill
-
-```bash
-npx github:webrix-ai/agent-skills remove skill-name
-```
-
-### Install skills globally
-
-Use the `-g` flag to install skills globally to your Cursor skills directory:
-
-```bash
-npx github:webrix-ai/agent-skills add webrix/agent-skills@find-skills -g
 ```
 
 ## SDK Usage
@@ -181,8 +99,6 @@ This will:
 
 ```
 agent-skills/
-├── bin/
-│   └── cli.js          # CLI entry point
 ├── scripts/
 │   └── generate-skills-registry.mjs
 ├── skills/
