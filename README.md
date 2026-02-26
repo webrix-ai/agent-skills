@@ -1,10 +1,8 @@
-# Agent Skills
+# Agent Skills Repository
 
-A collection of agent skills for AI assistants.
+A collection of agent skills for AI assistants. This repository contains only Markdown files with YAML frontmatter - no JavaScript or package configuration needed.
 
 ## Structure
-
-This repository contains only Markdown files with YAML frontmatter. Each skill is defined in a `SKILL.md` file within its own directory under `/skills`.
 
 ```
 skills/
@@ -17,11 +15,9 @@ skills/
 
 ## Skill File Format
 
-Each `SKILL.md` file contains:
+Each `SKILL.md` file contains YAML frontmatter followed by Markdown documentation:
 
-### Frontmatter (YAML)
-
-```yaml
+```markdown
 ---
 name: skill-slug
 displayName: Skill Display Name
@@ -50,34 +46,72 @@ exampleInput: |
 exampleOutput: |
   Optional example output
 ---
+
+# Skill Name
+
+Skill documentation here...
 ```
-
-### Body (Markdown)
-
-The body contains the skill documentation, including:
-- Description
-- When to use
-- Steps
-- Examples
 
 ## Usage
 
-This package is designed to be imported as a GitHub dependency. The consuming application is responsible for parsing the Markdown files.
+This repository is designed to be synced into the `mcp-s-home` project using the sync script:
 
-```json
-{
-  "dependencies": {
-    "@webrix/skills": "github:webrix-ai/agent-skills#branch-name"
-  }
-}
+```bash
+cd mcp-s-home
+npm run sync-skills
 ```
 
-## Creating New Skills
+This copies all skill files into `mcp-s-home/src/skills/data/` where they are parsed and loaded by the application.
+
+## Adding New Skills
 
 1. Create a new directory under `/skills` with a kebab-case name
 2. Add a `SKILL.md` file with the required frontmatter and documentation
-3. Ensure all required fields are present
-4. Submit a pull request
+3. Ensure all required fields are present:
+   - `name` (slug)
+   - `displayName`
+   - `tagline`
+   - `description`
+   - `department` (array)
+   - `use_cases` (array)
+   - `tools_required` (array)
+   - `agents_compatible` (array)
+   - `author`
+   - `verified` (boolean)
+   - `updatedAt` (date)
+   - `version`
+4. Run `npm run sync-skills` in the mcp-s-home project to sync changes
+5. Commit and push to GitHub
+
+## Development Workflow
+
+1. Clone both repositories as sibling directories:
+   ```
+   GitHub/
+   ├── agent-skills/
+   └── mcp-s-home/
+   ```
+
+2. Make changes to skills in `agent-skills/skills/`
+
+3. Sync to mcp-s-home:
+   ```bash
+   cd mcp-s-home
+   npm run sync-skills
+   ```
+
+4. Test in mcp-s-home (dev server will hot-reload)
+
+5. Commit changes in both repositories
+
+## Benefits of This Approach
+
+- ✅ **Simple**: Just Markdown files, no build process
+- ✅ **Git-friendly**: Easy to review diffs and track changes
+- ✅ **No dependencies**: No package.json or node_modules
+- ✅ **Direct sync**: Files are copied directly, no module resolution
+- ✅ **Fast**: No npm install needed
+- ✅ **Clean separation**: Skills repo stays focused on content
 
 ## License
 
